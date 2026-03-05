@@ -3,7 +3,11 @@
     "description": "A Node-RED Project",
     "version": "0.0.1",
     "private": true,
+	"scripts":{
+		"start":"node-red"
+	},
     "dependencies": {
+		"node-red":"3.1.0",
         "node-red-contrib-mongodb3": "~2.0.1",
         "node-red-contrib-mongodb4": "~3.4.0",
         "node-red-mongodb": "~0.0.18"
