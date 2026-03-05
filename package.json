@@ -6,10 +6,11 @@
     "scripts": {
         "start": "node node_modules/node-red/red.js --settings settings.js"
     },
-    "dependencies": {
-        "node-red": "3.1.0",
-        "node-red-contrib-mongodb4": "~3.4.0"
-    },
+   "dependencies": {
+    "node-red": "3.1.0",
+    "node-red-contrib-mongodb4": "~3.4.0",
+    "node-red-contrib-mongodb3": "~2.0.1"
+},
     "engines": {
         "node": "18.x"
     }
