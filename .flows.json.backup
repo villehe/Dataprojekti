@@ -1,0 +1,131 @@
+[
+    {
+        "id": "132b6fea15e0115f",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "498cd0c140711461",
+        "type": "mqtt-broker",
+        "name": "mqtt://automaatio:Z0od2PZF65jbtcXu@automaatio.cloud.shiftr.io",
+        "broker": "mqtt://automaatio:Z0od2PZF65jbtcXu@automaatio.cloud.shiftr.io",
+        "port": 1883,
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": 4,
+        "keepalive": 60,
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "9b45cdd9519da650",
+        "type": "mongodb",
+        "hostname": "127.0.0.1",
+        "port": 27017,
+        "db": "mongodb+srv://ville:ville123@dataprojekti.cgbgpd8.mongodb.net/?appName=Dataprojekti",
+        "name": "Dataprojekti"
+    },
+    {
+        "id": "693d275b5b3c1497",
+        "type": "mongodb3",
+        "uri": "mongodb+srv://ville:ville123@dataprojekti.wkpse6t.mongodb.net/?appName=Dataprojekti",
+        "name": "",
+        "options": "",
+        "parallelism": -1
+    },
+    {
+        "id": "ac575647579ddabd",
+        "type": "mqtt in",
+        "z": "132b6fea15e0115f",
+        "name": "Data",
+        "topic": "automaatio/#",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "498cd0c140711461",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 110,
+        "y": 80,
+        "wires": [
+            [
+                "7c1f74432aacb0e5",
+                "4d0c5e324e3340fb"
+            ]
+        ]
+    },
+    {
+        "id": "7c1f74432aacb0e5",
+        "type": "debug",
+        "z": "132b6fea15e0115f",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 280,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "4d0c5e324e3340fb",
+        "type": "function",
+        "z": "132b6fea15e0115f",
+        "name": "function 1",
+        "func": "if (\n    msg.payload &&\n    msg.payload.hasOwnProperty(\"person count\") &&\n    typeof msg.payload[\"person count\"] === \"number\"\n) {\n    return msg;\n}\n\nreturn null;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 280,
+        "y": 140,
+        "wires": [
+            [
+                "f0b847dbd32a4ebf"
+            ]
+        ]
+    },
+    {
+        "id": "f0b847dbd32a4ebf",
+        "type": "mongodb3 in",
+        "z": "132b6fea15e0115f",
+        "service": "_ext_",
+        "configNode": "693d275b5b3c1497",
+        "name": "Dataprojekti",
+        "collection": "Dataprojekti",
+        "operation": "insert",
+        "x": 470,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    }
+]
